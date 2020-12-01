@@ -36,11 +36,12 @@
       var issue=a.textContent;
       var desc=h.textContent;
 
-      desc=replaceUmlaute(desc);
       desc=desc.replace("\"","");
       desc=desc.replace("+","Plus");
       desc=desc.replace(" ","_");
-      desc=desc.replace(/[^a-zA-Z0-9\-]/g,'_');
+      desc=desc.replace(/[^a-zA-Z0-9\-]/g, '_');
+      decs=desc.replace("__", "_");
+      desc=decs.replace(/^_/g, '');
 
       if(typSp.textContent.includes("Bug"))
       {
@@ -86,6 +87,7 @@
   browser.runtime.onMessage.addListener((message) => {
     if (message.command === "cmd") {
       doAction(message.action);
+      return Promise.resolve("ready");
     }
   });
 

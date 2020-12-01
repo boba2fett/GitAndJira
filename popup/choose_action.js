@@ -6,8 +6,10 @@ function listenForClicks() {
       browser.tabs.sendMessage(tabs[0].id, {
         command: "cmd",
         action: cmd
+      }).then(()=>
+      {
+        window.close();
       });
-      window.close();
     }
 
     function reportError(error) {
