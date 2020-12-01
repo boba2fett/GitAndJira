@@ -1,14 +1,14 @@
 # BranchJira
-Copies the right branch Name into your Clipboard
 
-install web-ext and then to build:
+Copies the right branch Name or a suitable begin of a Commit Message into your Clipboard
 
-web-ext build --overwrite-dest
+## Build
 
-This is not signed so to install in firefox you need to change the value of
+`npm install -g web-ext`
+`web-ext build --overwrite-dest`
 
-xpinstall.signatures.required
+## Install
 
-in
-
-about:config
+This is currently not signed, so to install in firefox you need a "blueisch" Firefox.
+Additional you need to change the value of `xpinstall.signatures.required` in `about:config` to `false`.
+Just drag the zip located under web-ext-artifackts into `about:addons`.
