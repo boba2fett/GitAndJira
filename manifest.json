@@ -3,7 +3,7 @@
   "description": "Copies the name of the branch to generate directly into clipboard",
   "manifest_version": 2,
   "name": "GitAndJira",
-  "version": "1.0",
+  "version": "1.1",
   "homepage_url": "https://b2f.ddnss.org/",
   "icons": {
     "48": "icons/48.png"
