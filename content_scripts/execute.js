@@ -36,6 +36,7 @@
       var issue=a.textContent;
       var desc=h.textContent;
 
+      decs=replaceUmlaute(decs);
       desc=desc.replace("\"","");
       desc=desc.replace("+","Plus");
       desc=desc.replace(" ","_");
