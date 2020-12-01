@@ -2,7 +2,7 @@
 
   "description": "Copies the name of the branch to generate directly into clipboard",
   "manifest_version": 2,
-  "name": "BranchJira",
+  "name": "GitAndJira",
   "version": "1.0",
   "homepage_url": "https://b2f.ddnss.org/",
   "icons": {
@@ -18,7 +18,7 @@
 
   "browser_specific_settings": {
     "gecko": {
-      "id": "boba2002fett@gmail.com"
+      "id": "GitAndJira@b2f.ddnss.org"
     }
   },
 

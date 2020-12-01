@@ -1,7 +1,7 @@
 html, body {
   width: 100px;
-  background-color: black;
-  color: #a4c9ae;
+  background-color: #137992;
+  color: #cec325;
 }
 
 .hidden {
@@ -19,11 +19,11 @@ html, body {
 }
 
 .action:hover {
-  background-color: #1f2533;
+  background-color: #334c86;
 }
 
 .action {
-  background-color:#12151d;
+  background-color:#162c66;
 }
 
 .reset {
