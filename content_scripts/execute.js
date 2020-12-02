@@ -26,6 +26,18 @@
       );
   }
 
+  function sanatizeForGitBranch(str)
+  {
+    str=replaceUmlaute(str);
+    str=str.replace("\"","");
+    str=str.replace("+","Plus");
+    str=str.replace(" ","_");
+    str=str.replace(/[^a-zA-Z0-9\-]/g, '_');
+    str=str.replace("__", "_");
+    str=str.replace(/^_/g, '');
+    return str;
+  }
+
   function doAction(action) {
     if(action==="Branch")
     {
@@ -36,13 +48,7 @@
       var issue=a.textContent;
       var desc=h.textContent;
 
-      decs=replaceUmlaute(decs);
-      desc=desc.replace("\"","");
-      desc=desc.replace("+","Plus");
-      desc=desc.replace(" ","_");
-      desc=desc.replace(/[^a-zA-Z0-9\-]/g, '_');
-      decs=desc.replace("__", "_");
-      desc=decs.replace(/^_/g, '');
+      desc=sanatizeForGitBranch(desc);
 
       if(typSp.textContent.includes("Bug"))
       {
@@ -60,9 +66,7 @@
           {
               var aPar = document.querySelector('a[id^="parent_issue_summary"]');
               var parentDesc=aPar.textContent;
-              parentDesc=replaceUmlaute(parentDesc);
-              parentDesc=parentDesc.replace(" ","_");
-              parentDesc=parentDesc.replace(/[^a-zA-Z0-9\-]/g,'_');
+              parentDesc=sanatizeForGitBranch(parentDesc);
               parent="feature/"+parentDesc+"/";
               var branch=parent+issue+"_"+desc+"";
               console.log(branch)
