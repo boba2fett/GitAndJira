@@ -9,13 +9,8 @@ Copies the right branch Name or a suitable begin of a Commit Message directly fr
 `web-ext build --overwrite-dest`
 
 ## Install
+For Firefox it has been signed and in the store under:
+[https://addons.mozilla.org/en-US/firefox/addon/gitandjira/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search](https://addons.mozilla.org/en-US/firefox/addon/gitandjira/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=search)
 
-This is currently **not signed**, so to install in firefox you need a "blueisch" Firefox like the developer Edition
+This is currently **not signed** for chrome, but you can still install it.
 
-Additional you need to change the value of `xpinstall.signatures.required` in `about:config` to `false`
-
-Just drag the zip located under web-ext-artifacts/ into `about:addons`
-
-## Future
-
-Maybe make a button appear on the jira site to do this things located in the popup
