@@ -1,4 +1,4 @@
-# BranchJira
+# GitAndJira
 
 Copies the right branch Name or a suitable begin of a Commit Message directly from Jira into your Clipboard
 
