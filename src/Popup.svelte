@@ -4,11 +4,11 @@
     import Play from "svelte-material-icons/Play.svelte";
     import Delete from "svelte-material-icons/Delete.svelte";
     import ContentCopy from "svelte-material-icons/ContentCopy.svelte";
-    import KeyboardReturn from "svelte-material-icons/KeyboardReturn.svelte";
 	import type { Settings, TimeRecord } from "./global";
     import Time from "./Time.svelte";
     import { onMount } from 'svelte';
     import TimeSum from "./TimeSum.svelte";
+    import Tooltip from "./Tooltip.svelte";
 
     const defaultUrlRule = [
         {
@@ -53,7 +53,7 @@
             timeSeconds: 0,
             lastStartTime: new Date(),
             lastEndTime: null,
-            type: type
+            type: type,
         }]);
         await browser.storage.local.set(settings as any as browser.storage.StorageObject);
         taskName = "";
@@ -79,20 +79,18 @@
         await browser.storage.local.set(settings as any as browser.storage.StorageObject);
 	}
 
-    async function toNavision(index: number): Promise<void> {
-        const timeRecord = settings.timeRecordings[index];
+    function generateClipBoardText(timeRecord: TimeRecord): string {
+        if (settings?.navisionSupport)
+        {
+            return (timeRecord.type || settings.fallbackType) + "\t" + timeRecord.task + "\t" + getHours(timeRecord);
+        }
+        return timeRecord.task;
+    }
+
+    function getHours(timeRecord: TimeRecord): string {
         const timeSeconds = timeRecord.timeSeconds + (timeRecord.lastEndTime ? 0 : (new Date().getTime() - timeRecord.lastStartTime.getTime()) / 1000);
         const hours = Math.floor(timeSeconds / 360) / 10;
-
-        await executeScript(`
-            let tableRows = document.querySelectorAll("tr[role='row']");
-            let tableRow = tableRows[tableRows.length - 1];
-
-            let inputs = tableRow.querySelectorAll("input");
-            inputs[0].value = "${timeRecord.type}";
-            inputs[4].value = "${hours.toLocaleString()}";
-            inputs[5].value = "${timeRecord.task}";
-        `);
+        return hours.toLocaleString();
     }
 
     async function executeScript(code: string): Promise<any>
@@ -133,6 +131,7 @@
     onMount(function() {
         input.focus();
     });
+
 </script>
 
 <main>
@@ -152,11 +151,10 @@
                     {/if}
                     <span class="description">{timeRecording.task}</span>
                     <span class="spacer"></span>
-                    <button class="first" on:click={() => navigator.clipboard.writeText(timeRecording.task)}><ContentCopy /></button>
-                    {#if settings.navisionSupport}
-                        <button class="first" on:click={() => toNavision(index)}><KeyboardReturn /></button>
-                    {/if}
-                    <span><Time {timeRecording}/></span>
+                    <button class="first" on:click={() => navigator.clipboard.writeText(generateClipBoardText(timeRecording))}><ContentCopy /></button>
+                    <Tooltip title={getHours(timeRecording)}>
+                        <span><Time {timeRecording}/></span>
+                    </Tooltip>
                     <button class="last" on:click="{() => removeTask(index)}"><Delete /></button>
                 </div>
             {/each}

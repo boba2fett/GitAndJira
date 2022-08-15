@@ -68,15 +68,19 @@
 	}
 </script>
 {#if settings}
-    <h2>BaseUri To Regex</h2>
+    <h3>Navision Support (Experimental)</h3>
+    <input type="checkbox" class="navision" bind:checked={settings.navisionSupport} />
+
+    {#if settings.navisionSupport}
+        <h4>Fallback Type</h4>
+        <input bind:value={settings.fallbackType}>
+    {/if}
+
+    <h3>BaseUri To Regex</h3>
 
     {#if settings?.urlRules}
         {#each settings.urlRules as urlRule, index}
             <div class="urlregex">
-                {#if settings.navisionSupport}
-                    <label for={"type_" + index}>TYPE</label>
-                    <input id={"type_" + index} bind:value={urlRule.type}>
-                {/if}
                 <label for={"url_" + index}>URL</label>
                 <input id={"url_" + index} bind:value={urlRule.baseUri}>
                 <label for={"regex_" + index}>REGEX</label>
@@ -88,6 +92,10 @@
                         </option>
                     {/each}
                 </select>
+                {#if settings.navisionSupport}
+                    <label for={"type_" + index}>TYPE</label>
+                    <input id={"type_" + index} bind:value={urlRule.type}>
+                {/if}
 
                 <div class="buttons">
                     <button on:click={() => removeSetting(index)}><Delete /></button>
@@ -95,14 +103,6 @@
             </div>
         {/each}
     {/if}
-    
-    {#if settings.navisionSupport}
-        <h2>Fallback Type</h2>
-        <input bind:value={settings.fallbackType}>
-    {/if}
-
-    <h3>Navision Support (Experimental)</h3>
-    <input type="checkbox" class="navision" bind:checked={settings.navisionSupport} />
     
     <div class="buttons">
         <button on:click={addSetting}><Plus /></button>

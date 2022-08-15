@@ -2,9 +2,12 @@
 
 Environment:
 
-- Debian
-- node *17.6.0*
-- npm: *8.5.1*
+- OS (lsb_release -a)
+```
+--OS_RELEASE--
+```
+- node --NODE_VERSION--
+- npm: --NPM_VERSION--
 
 ```bash
 npm ci
