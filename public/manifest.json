@@ -1,28 +1,28 @@
 {
-  "description": "A simple time tracking tool wich reads out tocket ids from the url.",
+
+  "description": "Copies the name of the branch to generate directly into clipboard",
   "manifest_version": 2,
-  "name": "ClockTrack",
+  "name": "GitAndJira",
   "version": "--VERSION--",
-  "homepage_url": "https://www.ftue.ddnss.org",
+  "homepage_url": "https://b2f.ddnss.org/",
   "icons": {
     "48": "icons/48.png"
   },
 
-  "permissions": ["activeTab", "clipboardWrite", "storage"],
+  "permissions": [
+    "activeTab",
+    "clipboardWrite"
+  ],
 
   "browser_specific_settings": {
     "gecko": {
-      "id": "clocktrack@www.ftue.ddnss.org"
+      "id": "GitAndJira@b2f.ddnss.org"
     }
   },
 
   "browser_action": {
     "default_icon": "icons/32.png",
-    "default_title": "ClockTrack",
+    "default_title": "BranchJira",
     "default_popup": "popup.html"
-  },
-
-  "options_ui": {
-    "page": "options.html"
   }
 }
